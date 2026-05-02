@@ -9,6 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { User } from '../users/entities/user.entity';
+import { AUTH_ERRORS, AUTH_SECURITY } from './constants/auth.constants';
 import { AuthResponseDto } from './dto/auth-response.dto';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
@@ -30,7 +31,7 @@ export class AuthService {
       where: { email },
     });
     if (existingUser) {
-      throw new ConflictException('Email is already registered');
+      throw new ConflictException(AUTH_ERRORS.EMAIL_ALREADY_REGISTERED);
     }
 
     const passwordHash = await bcrypt.hash(dto.password, this.getSaltRounds());
@@ -46,7 +47,7 @@ export class AuthService {
     const email = this.authUserMapper.normalizeEmail(dto.email);
     const user = await this.usersRepository.findOne({ where: { email } });
     if (!user) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException(AUTH_ERRORS.INVALID_CREDENTIALS);
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -54,7 +55,7 @@ export class AuthService {
       user.passwordHash,
     );
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException(AUTH_ERRORS.INVALID_CREDENTIALS);
     }
 
     return this.buildAuthResponse(user);
@@ -63,7 +64,7 @@ export class AuthService {
   async findUserById(id: number): Promise<User> {
     const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new NotFoundException(AUTH_ERRORS.USER_NOT_FOUND);
     }
     return user;
   }
@@ -85,9 +86,13 @@ export class AuthService {
   }
 
   private getSaltRounds(): number {
-    const parsedRounds = Number(process.env.BCRYPT_SALT_ROUNDS ?? '10');
-    if (Number.isNaN(parsedRounds) || parsedRounds < 8) {
-      return 10;
+    const rawSaltRounds = process.env[AUTH_SECURITY.BCRYPT_SALT_ROUNDS_ENV_KEY];
+    const parsedRounds = Number(rawSaltRounds);
+    if (
+      Number.isNaN(parsedRounds) ||
+      parsedRounds < AUTH_SECURITY.MIN_BCRYPT_SALT_ROUNDS
+    ) {
+      return AUTH_SECURITY.DEFAULT_BCRYPT_SALT_ROUNDS;
     }
     return parsedRounds;
   }

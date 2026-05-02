@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { DeepPartial } from 'typeorm';
+import { MapperInterface } from '../../common/interfaces/mapper.interface';
 import { User } from '../../users/entities/user.entity';
 import { RegisterDto } from '../dto/register.dto';
 import { UserResponseDto } from '../dto/user-response.dto';
-import { MapperInterface } from '../interfaces/mapper.interface';
 
 type CreateUserInput = RegisterDto & { passwordHash: string };
 
