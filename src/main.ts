@@ -1,8 +1,9 @@
-import { NestFactory } from '@nestjs/core';
+﻿import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
 import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
+import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,6 +16,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
+  app.useGlobalFilters(new GlobalExceptionFilter());
   app.enableCors({
     origin: true,
     credentials: false,

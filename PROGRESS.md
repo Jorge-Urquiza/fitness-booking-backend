@@ -1,4 +1,4 @@
-# Project Progress
+﻿# Project Progress
 
 ## Completed
 - Initial README
@@ -8,12 +8,13 @@
 - TypeORM database connection
 - AI-assisted development workflow
 - Core database entities
+- Global exception handling
 
 ## Current Milestone
-- Core database entities
+- Global exception handling
 
 ## Next Milestone
-- Global exception handling
+- Healthcheck endpoint
 
 ## Notes
 - Repository is currently being developed directly on `master`.
