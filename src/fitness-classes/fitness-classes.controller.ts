@@ -10,6 +10,7 @@
 import { CreateFitnessClassDto } from './dto/create-fitness-class.dto';
 import { FindFitnessClassesQueryDto } from './dto/find-fitness-classes-query.dto';
 import { FitnessClassResponseDto } from './dto/fitness-class-response.dto';
+import { ClassAvailabilityResponseDto } from './dto/class-availability-response.dto';
 import { FitnessClassesService } from './fitness-classes.service';
 
 @Controller('classes')
@@ -33,5 +34,12 @@ export class FitnessClassesController {
     @Param('id', ParseIntPipe) id: number,
   ): Promise<FitnessClassResponseDto> {
     return this.fitnessClassesService.findOne(id);
+  }
+
+  @Get(':id/availability')
+  findAvailability(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ClassAvailabilityResponseDto> {
+    return this.fitnessClassesService.findAvailability(id);
   }
 }

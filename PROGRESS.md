@@ -14,12 +14,13 @@
 - Instructors module
 - Fitness classes module
 - Booking workflow
-
-## Current Milestone
 - Availability
 
-## Next Milestone
+## Current Milestone
 - Swagger
+
+## Next Milestone
+- Minimal tests
 
 ## Notes
 - Repository is currently being developed directly on `master`.
@@ -32,3 +33,4 @@
 - Shared `MapperInterface` is located in `common/interfaces` for reuse across modules.
 - Auth constants centralize reusable messages and security defaults.
 - Booking module includes transactional booking flow, duplicate/full/past-class protections, and authenticated self-service cancel/list endpoints.
+- Availability endpoint `GET /api/classes/:id/availability` returns class capacity, confirmed bookings, and available spots while ignoring cancelled/soft-deleted bookings.
