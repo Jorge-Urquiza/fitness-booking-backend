@@ -20,7 +20,12 @@ NestJS API to manage fitness class reservations (users, classes, bookings, avail
 ## Architecture Rules
 - Use layered NestJS structure: Controller -> Service -> Repository/TypeORM.
 - Keep business logic in services, not controllers.
-- Use DTO validation for request boundaries.
+- Use explicit DTOs for both input (request) and output (response).
+- Use DTO validation and transformation (`class-validator` + `class-transformer`) at request boundaries.
+- Use dedicated mappers for:
+- DTO -> persistence/entity transformation
+- Entity -> response DTO transformation
+- Avoid returning entities directly from controllers.
 - Prefer explicit database relations and constraints in entities.
 - Add global cross-cutting concerns (errors, validation, auth guards) centrally.
 
@@ -42,7 +47,7 @@ At the end of every task, update `PROGRESS.md` to reflect:
 - What was completed
 - Current milestone
 - Next milestone
-- Any blockers/notes (if present)
+- Any blockers/notes (if present)y blockers/notes (if present)
 
 ## Do-Not-Do Rules
 - Do not change business requirements without explicit instruction.

@@ -13,7 +13,7 @@
 - Authentication module
 
 ## Current Milestone
-- Authentication module
+- Instructors module
 
 ## Next Milestone
 - Fitness classes module

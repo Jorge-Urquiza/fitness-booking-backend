@@ -1,44 +1,64 @@
 # Implementation Plan
 
-## Current State
-- Initial README commit completed
-- NestJS setup completed
-- Application bootstrap configured
-- Docker Compose (MySQL) configured
-- TypeORM connection configured
+## Completed
+- Core entities
+- Global exception handling
+- Healthcheck
+- Auth
+
+## Next
+- Instructors
+
+## Pending
+- Fitness classes
+- Bookings
+- Availability
+- Swagger
+- Minimal tests
+- Final README guide
 
 ## Milestones
-1. Core entities
-- Define initial entities and relations (User, FitnessClass, Booking, Availability as needed).
-- Add migrations/schema alignment for baseline domain model.
 
-2. Global exception handling
-- Add global exception filter and consistent error response format.
+### Instructors
+- Create instructor
+- List instructors
+- Get instructor by id
+- Validate required fields
+- Follow soft delete convention
 
-3. Healthcheck
-- Add health endpoint for API and DB connectivity status.
+### Fitness classes
+- Create fitness class
+- List fitness classes
+- Get fitness class by id
+- Validate instructor exists
+- Optional filters (date, instructorId)
 
-4. Auth
-- Add basic authentication flow and route protection strategy.
+### Bookings
+- Booking creation and cancelation
+- Prevent duplicate active booking
+- Prevent overbooking
+- Prevent booking past classes
+- Prevent cancelation after class starts
 
-5. Fitness classes
-- CRUD/list endpoints for fitness classes with validation.
+### Availability
+- Calculate availability per class
+- Return capacity, confirmed bookings, available spots
 
-6. Bookings
-- Booking creation/cancelation and booking constraints.
+### Swagger
+- Add OpenAPI documentation
+- Document auth, instructors, classes, bookings and health endpoints
 
-7. Availability
-- Availability rules and conflict checks for bookings/classes.
+### Minimal tests
+- Add critical unit tests for booking business rules
+- Prioritize service-level tests
 
-8. Swagger
-- Add OpenAPI documentation and endpoint grouping.
-
-9. Minimal tests
-- Add critical unit/e2e coverage for auth, classes, and bookings happy paths.
-
-10. Final README guide
-- Update README with setup, env vars, API usage, and demo flow.
+### Final README guide
+- Update README with setup
+- Environment variables
+- API usage
+- Demo flow
+- Technical decisions
 
 ## Execution Notes
 - Move milestone-by-milestone; avoid parallel unfinished features.
-- Update `PROGRESS.md` at the end of each completed task.
+- `PROGRESS.md` is the source of truth for current execution state.
