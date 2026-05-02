@@ -1,4 +1,9 @@
-export interface MapperInterface<TInput, TPersistence, TResponse> {
-  toPersistence(input: TInput): TPersistence;
-  toResponse(input: TPersistence): TResponse;
+export interface MapperInterface<
+  TInput,
+  TPersistenceOutput,
+  TResponseInput,
+  TResponseOutput,
+> {
+  toPersistence(input: TInput): TPersistenceOutput;
+  toResponse(input: TResponseInput): TResponseOutput;
 }

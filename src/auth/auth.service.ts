@@ -26,7 +26,7 @@ export class AuthService {
   ) {}
 
   async register(dto: RegisterDto): Promise<AuthResponseDto> {
-    const email = this.authUserMapper.normalizeEmail(dto.email);
+    const email = dto.email;
     const existingUser = await this.usersRepository.findOne({
       where: { email },
     });
@@ -35,16 +35,15 @@ export class AuthService {
     }
 
     const passwordHash = await bcrypt.hash(dto.password, this.getSaltRounds());
-    const user = this.usersRepository.create(
-      this.authUserMapper.toPersistence({ ...dto, email, passwordHash }),
-    );
+    const newUser = this.authUserMapper.toCreatePersistence(dto, passwordHash);
+    const user = this.usersRepository.create(newUser);
     const savedUser = await this.usersRepository.save(user);
 
     return this.buildAuthResponse(savedUser);
   }
 
   async login(dto: LoginDto): Promise<AuthResponseDto> {
-    const email = this.authUserMapper.normalizeEmail(dto.email);
+    const email = dto.email;
     const user = await this.usersRepository.findOne({ where: { email } });
     if (!user) {
       throw new UnauthorizedException(AUTH_ERRORS.INVALID_CREDENTIALS);
