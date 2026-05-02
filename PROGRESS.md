@@ -13,12 +13,13 @@
 - Authentication module
 - Instructors module
 - Fitness classes module
+- Booking workflow
 
 ## Current Milestone
-- Fitness classes module
+- Availability
 
 ## Next Milestone
-- Bookings module
+- Swagger
 
 ## Notes
 - Repository is currently being developed directly on `master`.
@@ -30,3 +31,4 @@
 - Input normalization (`trim`/`lowercase`) is handled in DTOs with `class-transformer` (`@Transform`).
 - Shared `MapperInterface` is located in `common/interfaces` for reuse across modules.
 - Auth constants centralize reusable messages and security defaults.
+- Booking module includes transactional booking flow, duplicate/full/past-class protections, and authenticated self-service cancel/list endpoints.
