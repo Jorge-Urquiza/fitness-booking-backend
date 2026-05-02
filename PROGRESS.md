@@ -16,12 +16,13 @@
 - Booking workflow
 - Availability
 - Swagger
-
-## Current Milestone
 - Minimal tests
 
+## Current Milestone
+- Final README guide
+
 ## Next Milestone
-- README guide
+- Demo 
 
 ## Notes
 - Repository is currently being developed directly on `master`.
