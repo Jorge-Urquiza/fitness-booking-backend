@@ -15,12 +15,13 @@
 - Fitness classes module
 - Booking workflow
 - Availability
-
-## Current Milestone
 - Swagger
 
-## Next Milestone
+## Current Milestone
 - Minimal tests
+
+## Next Milestone
+- README guide
 
 ## Notes
 - Repository is currently being developed directly on `master`.
@@ -34,3 +35,5 @@
 - Auth constants centralize reusable messages and security defaults.
 - Booking module includes transactional booking flow, duplicate/full/past-class protections, and authenticated self-service cancel/list endpoints.
 - Availability endpoint `GET /api/classes/:id/availability` returns class capacity, confirmed bookings, and available spots while ignoring cancelled/soft-deleted bookings.
+- Swagger/OpenAPI documentation is available at `GET /api/docs` with Bearer auth support and documented modules for Auth, Instructors, Fitness classes, Bookings, Availability and Health.
+- Swagger query parameter docs were normalized to DTO-first style to keep controllers cleaner.
