@@ -11,12 +11,13 @@
 - Global exception handling
 - Healthcheck endpoint
 - Authentication module
-
-## Current Milestone
 - Instructors module
 
-## Next Milestone
+## Current Milestone
 - Fitness classes module
+
+## Next Milestone
+- Bookings module
 
 ## Notes
 - Repository is currently being developed directly on `master`.
