@@ -9,12 +9,13 @@
 - AI-assisted development workflow
 - Core database entities
 - Global exception handling
+- Healthcheck endpoint
 
 ## Current Milestone
-- Global exception handling
+- Healthcheck endpoint
 
 ## Next Milestone
-- Healthcheck endpoint
+- Authentication module
 
 ## Notes
 - Repository is currently being developed directly on `master`.
