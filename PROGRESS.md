@@ -12,6 +12,7 @@
 - Healthcheck endpoint
 - Authentication module
 - Instructors module
+- Fitness classes module
 
 ## Current Milestone
 - Fitness classes module
